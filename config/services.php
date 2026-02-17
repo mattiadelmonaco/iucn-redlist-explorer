@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'iucn' => [
+        'key' => env('IUCN_API_KEY'),
+    ],
+
 ];
