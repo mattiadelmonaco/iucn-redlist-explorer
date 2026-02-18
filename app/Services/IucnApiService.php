@@ -31,7 +31,7 @@ class IucnApiService
     public function getCountries(): array
     {
         $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/country/list");
+            ->get("{$this->baseUrl}/countries/");
 
         return $response->json();
     }
