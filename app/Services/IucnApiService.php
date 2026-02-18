@@ -52,6 +52,11 @@ class IucnApiService
 
         $data = $response->json();
 
-        return $data['assessments'] ?? [];
+        return [
+
+            'system' => $data['system'] ?? null,
+            'assessments' => $data['assessments'] ?? []
+
+        ];
     }
 }
