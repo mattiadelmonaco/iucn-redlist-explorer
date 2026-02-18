@@ -39,4 +39,19 @@ class IucnApiService
 
         return $data['countries'] ?? [];
     }
+
+    /**
+     * recupera lista valutazioni per un sistema specifico
+     */
+    public function getAssessmentsBySystem(string $code, int $page = 1): array
+    {
+        $response = Http::withToken($this->apiKey)
+            ->get("{$this->baseUrl}/systems/{$code}", [
+                'page' => $page
+            ]);
+
+        $data = $response->json();
+
+        return $data['assessments'] ?? [];
+    }
 }

@@ -14,9 +14,9 @@
             <h2 class="text-2xl font-semibold mb-4">Sistemi</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 @foreach ($systems as $system)
-                    <div class="border p-4 rounded">
+                    <a href="/systems/{{ $system['code'] }}" class="border p-4 rounded block hover:bg-gray-100">
                         <h3>{{ $system['description']['en'] }}</h3>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </section>
