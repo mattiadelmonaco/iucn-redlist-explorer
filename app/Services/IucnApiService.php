@@ -22,7 +22,9 @@ class IucnApiService
         $response = Http::withToken($this->apiKey)
             ->get("{$this->baseUrl}/systems/");
 
-        return $response->json();
+        $data = $response->json();
+
+        return $data['systems'] ?? [];
     }
 
     /**
@@ -33,6 +35,8 @@ class IucnApiService
         $response = Http::withToken($this->apiKey)
             ->get("{$this->baseUrl}/countries/");
 
-        return $response->json();
+        $data = $response->json();
+
+        return $data['countries'] ?? [];
     }
 }
