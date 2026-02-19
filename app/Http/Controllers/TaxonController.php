@@ -8,8 +8,15 @@ class TaxonController extends Controller
 {
     public function show(int $sisId, IucnApiService $api)
     {
-        $taxon = $api->getTaxonDetails($sisId);
+        $data = $api->getTaxonDetails($sisId);
+        $taxon = $data['taxon'];
+        $assessments = $data['assessments'];
 
-        return view('pages.taxon.show', compact('taxon'));
+        // traduzione categorie
+        foreach ($assessments as &$assessment) {
+            $assessment['category_translated'] = \App\Helpers\CategoryHelper::translate($assessment['red_list_category_code']);
+        }
+
+        return view('pages.taxon.show', compact('assessments', 'taxon'));
     }
 }
