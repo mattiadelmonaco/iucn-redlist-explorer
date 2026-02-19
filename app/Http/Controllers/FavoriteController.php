@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
+
+    public function index()
+    {
+        $favorites = Favorite::orderBy('created_at', 'desc')->get();
+
+        return view('pages.favorites.index', compact('favorites'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

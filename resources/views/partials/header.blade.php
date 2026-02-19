@@ -6,10 +6,10 @@
         <nav>
             <ul class="flex gap-4">
                 <li>
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="#">pagina 2</a>
+                    <a href="/favorites/">Preferiti</a>
                 </li>
                 <li>
                     <a href="#">pagina 3</a>
@@ -17,6 +17,7 @@
                 <li>
                     <a href="#">pagina 4</a>
                 </li>
+
             </ul>
         </nav>
 

@@ -16,3 +16,5 @@ Route::get('/countries/{code}', [CountryController::class, 'show']);
 Route::get('/taxon/{sisId}', [TaxonController::class, 'show']);
 
 Route::post('/favorites', [FavoriteController::class, 'store']);
+
+Route::get('/favorites', [FavoriteController::class, 'index']);
