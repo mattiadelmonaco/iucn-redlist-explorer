@@ -83,4 +83,15 @@ class IucnApiService
             'total_pages' => (int) $response->header('total-pages')
         ];
     }
+
+    /**
+     * recupera dettagli taxon (specie) tramite sis_taxon_id
+     */
+    public function getTaxonDetails(int $sisId): array
+    {
+        $response = Http::withToken($this->apiKey)
+            ->get("{$this->baseUrl}/taxa/sis/{$sisId}");
+
+        return $response->json() ?? [];
+    }
 }
