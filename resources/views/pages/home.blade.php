@@ -26,9 +26,9 @@
             <h2 class="text-2xl font-semibold mb-4">Nazioni</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 @foreach ($countries as $country)
-                    <div class="border p-2">
-                        {{ $country['description']['en'] }}
-                    </div>
+                    <a href="/countries/{{ $country['code'] }}" class="border p-4 rounded block hover:bg-gray-100">
+                        <h3>{{ $country['description']['en'] }}</h3>
+                    </a>
                 @endforeach
             </div>
         </section>

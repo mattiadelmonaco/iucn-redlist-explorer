@@ -61,4 +61,26 @@ class IucnApiService
             'total_pages' => (int) $response->header('total-pages')
         ];
     }
+
+    /**
+     * recupera lista valutazioni per un paese specifico
+     */
+    public function getAssessmentsByCountry(string $code, int $page = 1): array
+    {
+        $response = Http::withToken($this->apiKey)
+            ->get("{$this->baseUrl}/countries/{$code}", [
+                'page' => $page
+            ]);
+
+        $data = $response->json();
+
+        return [
+            'country' => $data['country'] ?? null,
+            'assessments' => $data['assessments'] ?? [],
+            'total' => (int) $response->header('total-count'),
+            'per_page' => (int) $response->header('page-items'),
+            'current_page' => (int) $response->header('current-page'),
+            'total_pages' => (int) $response->header('total-pages')
+        ];
+    }
 }
