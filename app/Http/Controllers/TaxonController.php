@@ -17,6 +17,8 @@ class TaxonController extends Controller
             $assessment['category_translated'] = \App\Helpers\CategoryHelper::translate($assessment['red_list_category_code']);
         }
 
-        return view('pages.taxon.show', compact('assessments', 'taxon'));
+        $isFavorite = \App\Models\Favorite::where('sis_taxon_id', $sisId)->exists();
+
+        return view('pages.taxon.show', compact('assessments', 'taxon', 'isFavorite'));
     }
 }
