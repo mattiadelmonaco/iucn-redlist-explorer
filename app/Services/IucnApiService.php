@@ -53,10 +53,12 @@ class IucnApiService
         $data = $response->json();
 
         return [
-
             'system' => $data['system'] ?? null,
-            'assessments' => $data['assessments'] ?? []
-
+            'assessments' => $data['assessments'] ?? [],
+            'total' => (int) $response->header('total-count'),
+            'per_page' => (int) $response->header('page-items'),
+            'current_page' => (int) $response->header('current-page'),
+            'total_pages' => (int) $response->header('total-pages')
         ];
     }
 }
