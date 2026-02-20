@@ -3,16 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\Favorite;
+use App\Services\IucnApiService;
+use App\Traits\FooterData;
 use Illuminate\Http\Request;
 
 class FavoriteController extends Controller
 {
 
-    public function index()
+    use FooterData;
+
+    public function index(IucnApiService $api)
     {
         $favorites = Favorite::orderBy('created_at', 'desc')->get();
 
-        return view('pages.favorites.index', compact('favorites'));
+        $footerData = $this->getFooterData($api);
+
+        return view('pages.favorites.index', compact('favorites', 'footerData'));
     }
 
     public function store(Request $request)

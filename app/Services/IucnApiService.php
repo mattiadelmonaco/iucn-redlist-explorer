@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 class IucnApiService
@@ -104,5 +105,46 @@ class IucnApiService
             ->get("{$this->baseUrl}/assessment/{$assessmentId}");
 
         return $response->json() ?? [];
+    }
+
+    // ------- dati per footer
+
+    /**
+     * recupera versione API
+     */
+    public function getApiVersion(): array
+    {
+        return Cache::remember('footer_api_version', 86400, function () {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/information/api_version");
+
+            return $response->json() ?? [];
+        });
+    }
+
+    /**
+     * recupera versione Red List
+     */
+    public function getRedListVersion(): array
+    {
+        return Cache::remember('footer_red_list_version', 86400, function () {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/information/red_list_version");
+
+            return $response->json() ?? [];
+        });
+    }
+
+    /**
+     * recupera statistiche specie censite
+     */
+    public function getSpeciesCount(): array
+    {
+        return Cache::remember('footer_species_count', 86400, function () {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/statistics/count");
+
+            return $response->json() ?? [];
+        });
     }
 }

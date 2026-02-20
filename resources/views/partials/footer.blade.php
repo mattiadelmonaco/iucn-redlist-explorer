@@ -3,6 +3,16 @@
         <div class="bg-neutral-50 p-3 rounded-2xl">
             <p class="text-black font-bold">LOGO</p>
         </div>
+
+        <div>
+            <ul>
+                <li>Versione API: {{ $footerData['apiVersion'] }}</li>
+                <li>Versione Red List: {{ $footerData['redListVersion'] }}</li>
+                <li>Specie Censite: {{ $footerData['speciesCount'] }}</li>
+
+            </ul>
+        </div>
+
         <nav>
             <ul class="flex gap-4 text-xs">
                 <li>

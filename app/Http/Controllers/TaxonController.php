@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Services\IucnApiService;
+use App\Traits\FooterData;
 
 class TaxonController extends Controller
 {
+
+    use FooterData;
+
     public function show(int $sisId, IucnApiService $api)
     {
         $data = $api->getTaxonDetails($sisId);
@@ -19,6 +23,8 @@ class TaxonController extends Controller
 
         $isFavorite = \App\Models\Favorite::where('sis_taxon_id', $sisId)->exists();
 
-        return view('pages.taxon.show', compact('assessments', 'taxon', 'isFavorite'));
+        $footerData = $this->getFooterData($api);
+
+        return view('pages.taxon.show', compact('assessments', 'taxon', 'isFavorite', 'footerData'));
     }
 }

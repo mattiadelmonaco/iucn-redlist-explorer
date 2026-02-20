@@ -3,10 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Services\IucnApiService;
+use App\Traits\FooterData;
 use Illuminate\Http\Request;
 
 class SystemController extends Controller
 {
+
+    use FooterData;
+
     public function show(Request $request, string $code, IucnApiService $api)
     {
 
@@ -30,6 +34,8 @@ class SystemController extends Controller
             'last_page' => $data['total_pages']
         ];
 
-        return view('pages.systems.show', compact('assessments', 'system', 'pagination', 'code'));
+        $footerData = $this->getFooterData($api);
+
+        return view('pages.systems.show', compact('assessments', 'system', 'pagination', 'code', 'footerData'));
     }
 }

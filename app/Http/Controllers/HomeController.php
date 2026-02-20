@@ -3,16 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Services\IucnApiService;
-use Illuminate\Http\Request;
+use App\Traits\FooterData;
 
 class HomeController extends Controller
 {
+
+    use FooterData;
+
     public function index(IucnApiService $api)
     {
 
         $systems = $api->getSystems();
         $countries = $api->getCountries();
 
-        return view('pages.home', compact('systems', 'countries'));
+        $footerData = $this->getFooterData($api);
+
+        return view('pages.home', compact('systems', 'countries', 'footerData'));
     }
 }
