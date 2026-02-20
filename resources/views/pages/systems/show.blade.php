@@ -7,8 +7,14 @@
     <h1 class="text-3xl font-bold mb-6">
         Valutazioni - {{ $system['description']['en'] }}</h1>
 
-    {{-- tabella valutazioni --}}
-    <div class="container mx-auto px-4 py-8">
+    <div class="flex gap-3">
+        <button onclick="switchView('list')" id="btn-list"
+            class="px-4 py-2 rounded bg-blue-600 text-white cursor-pointer">Lista</button>
+        <button onclick="switchView('card')" id="btn-card" class="px-4 py-2 rounded bg-gray-200 cursor-pointer">Card</button>
+    </div>
+
+    {{-- tabella valutazioni (list-view) --}}
+    <div id="list-view" class="container mx-auto px-4 py-8">
         <div class="overflow-x-auto">
             <table class="min-w-full bg-white border">
                 <thead class="bg-gray-100">
@@ -56,6 +62,52 @@
         </div>
     </div>
 
+    {{-- card valutazioni (card-view) --}}
+    <div id="card-view" class="hidden container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+            @foreach ($assessments as $assessment)
+                <div class="border rounded-lg">
+                    <div class="flex justify-between items-center border-b p-2">
+                        <div class="">
+                            @if (isset($assessment['sis_taxon_id']))
+                                <a href="/taxon/{{ $assessment['sis_taxon_id'] }}" class="text-blue-600 hover:underline">
+                                    ID specie: {{ $assessment['sis_taxon_id'] }}
+                                </a>
+                            @else
+                                ---
+                            @endif
+                        </div>
+                        <div>
+                            Anno Pubblicazione: {{ $assessment['year_published'] }}
+                        </div>
+                    </div>
+                    <div class="p-2">
+                        <div>
+                            Possibile Estinto: {{ $assessment['possibly_extinct'] ? 'Sì' : 'No' }}
+                        </div>
+                        <div>
+                            Possibile Estinto in Natura: {{ $assessment['possibly_extinct_in_the_wild'] ? 'Sì' : 'No' }}
+                        </div>
+                        <div>
+                            ID Valutazione: <a href="/assessments/{{ $assessment['assessment_id'] }}"
+                                class="text-blue-600 hover:underline">
+                                {{ $assessment['assessment_id'] }}
+                            </a>
+                        </div>
+                        <div>
+                            Categoria: {{ $assessment['category_translated'] }}
+                        </div>
+                    </div>
+                    <div class="border-t-2 p-2">
+                        <a href="{{ $assessment['url'] }}" target="_blank" class="text-blue-600 hover:underline">
+                            Vedi su IUCN
+                        </a>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
     {{-- Paginazione --}}
     <div class="flex justify-between mt-4">
         @if ($pagination['current_page'] > 1)
@@ -84,5 +136,45 @@
             </span>
         @endif
     </div>
+
+    <script>
+        function switchView(view) {
+            const btnList = document.getElementById('btn-list')
+            const btnCard = document.getElementById('btn-card')
+            const listView = document.getElementById('list-view')
+            const cardView = document.getElementById('card-view')
+
+            // salva in localstorage la scelta
+            localStorage.setItem('viewMode', view);
+
+            if (view === 'list') {
+                listView.classList.remove('hidden')
+                listView.classList.add('block')
+                cardView.classList.remove('block')
+                cardView.classList.add('hidden')
+
+                btnList.classList.remove('bg-gray-200')
+                btnList.classList.add('bg-blue-600', 'text-white')
+                btnCard.classList.remove('bg-blue-600', 'text-white')
+                btnCard.classList.add('bg-gray-200')
+            } else if (view === 'card') {
+                listView.classList.remove('block')
+                listView.classList.add('hidden')
+                cardView.classList.remove('hidden')
+                cardView.classList.add('block')
+
+                btnList.classList.remove('bg-blue-600', 'text-white')
+                btnList.classList.add('bg-gray-200')
+                btnCard.classList.remove('bg-gray-200')
+                btnCard.classList.add('bg-blue-600', 'text-white')
+            }
+        }
+
+        // quando cambio pagina legge la scelta dal localstorage e mantiene la vista selezionata nella pagina precedente
+        window.addEventListener('DOMContentLoaded', function() {
+            const savedView = localStorage.getItem('viewMode') || 'list';
+            switchView(savedView)
+        })
+    </script>
 
 @endsection
