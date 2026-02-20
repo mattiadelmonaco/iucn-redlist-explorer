@@ -40,9 +40,13 @@
             </div>
         </div>
 
-        {{-- tabella valutazioni --}}
-        <div>
-            <h2 class="text-2xl font-semibold mb-4">Valutazioni</h2>
+        <h2 class="text-2xl font-semibold mb-4">Valutazioni</h2>
+        <div class="mb-4">
+            @include('partials.view-switcher')
+        </div>
+
+        {{-- tabella valutazioni (list-view) --}}
+        <div id="list-view">
             <div class="overflow-x-auto">
                 <table class="min-w-full bg-white border">
                     <thead class="bg-gray-100">
@@ -82,5 +86,47 @@
                 </table>
             </div>
         </div>
+
+        {{-- card valutazioni (card-view) --}}
+        <div id="card-view" class="hidden container mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
+                @foreach ($assessments as $assessment)
+                    <div class="border rounded-lg">
+                        <div class="flex justify-between items-center border-b p-2">
+                            <div>
+                                ID Valutazione: <a href="/assessments/{{ $assessment['assessment_id'] }}"
+                                    class="text-blue-600 hover:underline">
+                                    {{ $assessment['assessment_id'] }}
+                                </a>
+                            </div>
+                            <div>
+                                Anno Pubblicazione: {{ $assessment['year_published'] }}
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <div>
+                                Possibile Estinto: {{ $assessment['possibly_extinct'] ? 'Sì' : 'No' }}
+                            </div>
+                            <div>
+                                Possibile Estinto in Natura:
+                                {{ $assessment['possibly_extinct_in_the_wild'] ? 'Sì' : 'No' }}
+                            </div>
+
+                            <div>
+                                Categoria: {{ $assessment['category_translated'] }}
+                            </div>
+                        </div>
+                        <div class="border-t-2 p-2">
+                            <a href="{{ $assessment['url'] }}" target="_blank" class="text-blue-600 hover:underline">
+                                Vedi su IUCN
+                            </a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
     </div>
+
+    <script src="{{ asset('js/view-switcher.js') }}"></script>
+
 @endsection
