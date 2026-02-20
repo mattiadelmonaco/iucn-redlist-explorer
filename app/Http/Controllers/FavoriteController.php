@@ -20,10 +20,10 @@ class FavoriteController extends Controller
         $validated = $request->validate([
             'sis_taxon_id' => 'required|integer',
             'scientific_name' => 'required|string',
-            'common_names' => 'nullable|string' // ← Cambia in string
+            'common_names' => 'nullable|string'
         ]);
 
-        // Converti la stringa JSON in array
+        // converte stringa JSON in array
         if (isset($validated['common_names'])) {
             $validated['common_names'] = json_decode($validated['common_names'], true);
         }

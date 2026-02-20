@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssessmentController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeController;
@@ -18,3 +19,5 @@ Route::get('/taxon/{sisId}', [TaxonController::class, 'show']);
 Route::post('/favorites', [FavoriteController::class, 'store']);
 
 Route::get('/favorites', [FavoriteController::class, 'index']);
+
+Route::get('/assessments/{assessmentId}', [AssessmentController::class, 'show']);

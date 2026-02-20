@@ -37,7 +37,10 @@
                             <td class="px-4 py-2 border">{{ $assessment['year_published'] }}</td>
                             <td class="px-4 py-2 border">{{ $assessment['possibly_extinct'] ? 'Sì' : 'No' }}</td>
                             <td class="px-4 py-2 border">{{ $assessment['possibly_extinct_in_the_wild'] ? 'Sì' : 'No' }}
-                            <td class="px-4 py-2 border">{{ $assessment['assessment_id'] }}</td>
+                            <td class="px-4 py-2 border"><a href="/assessments/{{ $assessment['assessment_id'] }}"
+                                    class="text-blue-600 hover:underline">
+                                    {{ $assessment['assessment_id'] }}
+                                </a></td>
                             </td>
                             <td class="px-4 py-2 border">{{ $assessment['category_translated'] }}</td>
                             <td class="px-4 py-2 border">

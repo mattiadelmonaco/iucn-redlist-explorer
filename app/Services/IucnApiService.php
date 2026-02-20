@@ -94,4 +94,15 @@ class IucnApiService
 
         return $response->json() ?? [];
     }
+
+    /**
+     * recupera dettagli valutazione
+     */
+    public function getAssessmentDetails(int $assessmentId): array
+    {
+        $response = Http::withToken($this->apiKey)
+            ->get("{$this->baseUrl}/assessment/{$assessmentId}");
+
+        return $response->json() ?? [];
+    }
 }
