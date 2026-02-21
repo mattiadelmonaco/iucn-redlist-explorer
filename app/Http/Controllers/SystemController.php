@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\IucnApiService;
+use App\Traits\Filters;
 use App\Traits\FooterData;
 use Illuminate\Http\Request;
 
@@ -10,6 +11,7 @@ class SystemController extends Controller
 {
 
     use FooterData;
+    use Filters;
 
     public function show(Request $request, string $code, IucnApiService $api)
     {
@@ -21,6 +23,8 @@ class SystemController extends Controller
         $data = $api->getAssessmentsBySystem($code, $page);
         $system = $data['system'];
         $assessments = $data['assessments'];
+
+        $assessments = $this->applyFilters($assessments, $request);
 
         // traduzione categorie
         foreach ($assessments as &$assessment) {
