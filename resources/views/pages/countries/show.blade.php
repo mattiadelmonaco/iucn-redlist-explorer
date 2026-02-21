@@ -4,7 +4,14 @@
 
 @section('content')
 
-    <h1 class="text-3xl font-bold mb-6">Valutazioni - {{ $country['description']['en'] }}</h1>
+    <div class="flex gap-3 items-center mb-6">
+        <h1 class="text-3xl font-bold">Valutazioni - {{ $country['description']['en'] }}</h1>
+        <div>
+            <img src="https://flagcdn.com/w40/{{ strtolower($country['code']) }}.png"
+                alt="{{ $country['description']['en'] }}" class="w-8 h-6 object-cover rounded mt-2">
+        </div>
+
+    </div>
 
     @include('partials.view-switcher')
 
