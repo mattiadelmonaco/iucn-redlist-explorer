@@ -50,21 +50,25 @@ class IucnApiService
      */
     public function getAssessmentsBySystem(string $code, int $page = 1): array
     {
-        $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/systems/{$code}", [
-                'page' => $page
-            ]);
+        $cacheKey = "assessments_system_{$code}_page_{$page}";
 
-        $data = $response->json();
+        return Cache::remember($cacheKey, 300, function () use ($code, $page) {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/systems/{$code}", [
+                    'page' => $page
+                ]);
 
-        return [
-            'system' => $data['system'] ?? null,
-            'assessments' => $data['assessments'] ?? [],
-            'total' => (int) $response->header('total-count'),
-            'per_page' => (int) $response->header('page-items'),
-            'current_page' => (int) $response->header('current-page'),
-            'total_pages' => (int) $response->header('total-pages')
-        ];
+            $data = $response->json();
+
+            return [
+                'system' => $data['system'] ?? null,
+                'assessments' => $data['assessments'] ?? [],
+                'total' => (int) $response->header('total-count'),
+                'per_page' => (int) $response->header('page-items'),
+                'current_page' => (int) $response->header('current-page'),
+                'total_pages' => (int) $response->header('total-pages')
+            ];
+        });
     }
 
     /**
@@ -72,21 +76,25 @@ class IucnApiService
      */
     public function getAssessmentsByCountry(string $code, int $page = 1): array
     {
-        $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/countries/{$code}", [
-                'page' => $page
-            ]);
+        $cacheKey = "assessments_country_{$code}_page_{$page}";
 
-        $data = $response->json();
+        return Cache::remember($cacheKey, 300, function () use ($code, $page) {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/countries/{$code}", [
+                    'page' => $page
+                ]);
 
-        return [
-            'country' => $data['country'] ?? null,
-            'assessments' => $data['assessments'] ?? [],
-            'total' => (int) $response->header('total-count'),
-            'per_page' => (int) $response->header('page-items'),
-            'current_page' => (int) $response->header('current-page'),
-            'total_pages' => (int) $response->header('total-pages')
-        ];
+            $data = $response->json();
+
+            return [
+                'country' => $data['country'] ?? null,
+                'assessments' => $data['assessments'] ?? [],
+                'total' => (int) $response->header('total-count'),
+                'per_page' => (int) $response->header('page-items'),
+                'current_page' => (int) $response->header('current-page'),
+                'total_pages' => (int) $response->header('total-pages')
+            ];
+        });
     }
 
     /**
@@ -94,10 +102,14 @@ class IucnApiService
      */
     public function getTaxonDetails(int $sisId): array
     {
-        $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/taxa/sis/{$sisId}");
+        $cacheKey = "taxon_{$sisId}";
 
-        return $response->json() ?? [];
+        return Cache::remember($cacheKey, 300, function () use ($sisId) {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/taxa/sis/{$sisId}");
+
+            return $response->json() ?? [];
+        });
     }
 
     /**
@@ -105,10 +117,14 @@ class IucnApiService
      */
     public function getAssessmentDetails(int $assessmentId): array
     {
-        $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/assessment/{$assessmentId}");
+        $cacheKey = "assessment_{$assessmentId}";
 
-        return $response->json() ?? [];
+        return Cache::remember($cacheKey, 300, function () use ($assessmentId) {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/assessment/{$assessmentId}");
+
+            return $response->json() ?? [];
+        });
     }
 
     // ------- dati per footer
