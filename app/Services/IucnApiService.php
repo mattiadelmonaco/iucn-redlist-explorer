@@ -20,12 +20,14 @@ class IucnApiService
      */
     public function getSystems(): array
     {
-        $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/systems/");
+        return Cache::remember('homepage_systems', 3600, function () {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/systems/");
 
-        $data = $response->json();
+            $data = $response->json();
 
-        return $data['systems'] ?? [];
+            return $data['systems'] ?? [];
+        });
     }
 
     /**
@@ -33,12 +35,14 @@ class IucnApiService
      */
     public function getCountries(): array
     {
-        $response = Http::withToken($this->apiKey)
-            ->get("{$this->baseUrl}/countries/");
+        return Cache::remember('homepage_countries', 3600, function () {
+            $response = Http::withToken($this->apiKey)
+                ->get("{$this->baseUrl}/countries/");
 
-        $data = $response->json();
+            $data = $response->json();
 
-        return $data['countries'] ?? [];
+            return $data['countries'] ?? [];
+        });
     }
 
     /**
