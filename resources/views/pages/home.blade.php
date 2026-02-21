@@ -26,8 +26,11 @@
             <h2 class="text-2xl font-semibold mb-4">Nazioni</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 @foreach ($countries as $country)
-                    <a href="/countries/{{ $country['code'] }}" class="border p-4 rounded block hover:bg-gray-100">
-                        <h3>{{ $country['description']['en'] }}</h3>
+                    <a href="/countries/{{ $country['code'] }}"
+                        class="border p-3 rounded hover:bg-gray-100 flex items-center gap-3">
+                        <img src="https://flagcdn.com/w40/{{ strtolower($country['code']) }}.png"
+                            alt="{{ $country['description']['en'] }}" class="w-8 h-6 object-cover rounded">
+                        <span>{{ $country['description']['en'] }}</span>
                     </a>
                 @endforeach
             </div>
