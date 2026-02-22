@@ -14,16 +14,14 @@
 
 </head>
 
-<body>
-
+<body class="flex flex-col min-h-screen">
     @include('partials.header')
 
-    <main class="max-w-300 mx-auto py-8 px-5 min-h-screen">
+    <main class="flex-1 max-w-7xl w-full mx-auto py-8 px-2 md:px-4 lg:px-8">
         @yield('content')
     </main>
 
     @include('partials.footer')
-
 </body>
 
 </html>
