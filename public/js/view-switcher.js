@@ -13,20 +13,36 @@ function switchView(view) {
         cardView.classList.remove("block");
         cardView.classList.add("hidden");
 
-        btnList.classList.remove("bg-gray-200");
-        btnList.classList.add("bg-blue-600", "text-white");
-        btnCard.classList.remove("bg-blue-600", "text-white");
-        btnCard.classList.add("bg-gray-200");
+        btnList.classList.remove(
+            "bg-gray-200",
+            "text-gray-700",
+            "hover:bg-gray-300",
+        );
+        btnList.classList.add("bg-red-700", "text-white");
+        btnCard.classList.remove("bg-red-700", "text-white");
+        btnCard.classList.add(
+            "bg-gray-200",
+            "text-gray-700",
+            "hover:bg-gray-300",
+        );
     } else if (view === "card") {
         listView.classList.remove("block");
         listView.classList.add("hidden");
         cardView.classList.remove("hidden");
         cardView.classList.add("block");
 
-        btnList.classList.remove("bg-blue-600", "text-white");
-        btnList.classList.add("bg-gray-200");
-        btnCard.classList.remove("bg-gray-200");
-        btnCard.classList.add("bg-blue-600", "text-white");
+        btnList.classList.remove("bg-red-700", "text-white");
+        btnList.classList.add(
+            "bg-gray-200",
+            "text-gray-700",
+            "hover:bg-gray-300",
+        );
+        btnCard.classList.remove(
+            "bg-gray-200",
+            "text-gray-700",
+            "hover:bg-gray-300",
+        );
+        btnCard.classList.add("bg-red-700", "text-white");
     }
 }
 

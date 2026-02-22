@@ -26,7 +26,7 @@
         </div>
     @else
         {{-- switcher list/card --}}
-        <div class="mt-4">
+        <div class="mt-6 flex justify-self-end">
             @include('partials.view-switcher')
 
         </div>
