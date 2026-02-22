@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="bg-linear-to-r from-red-950 to-red-700 text-white rounded-lg p-4 mb-10 shadow-lg">
-        <h1 class="text-4xl font-bold mb-3 text-center">IUCN Red List Explorer</h1>
+        <h1 class="text-4xl font-bold text-center">IUCN Red List Explorer</h1>
     </div>
 
     {{-- @dd($systems[0]['description']) --}}
