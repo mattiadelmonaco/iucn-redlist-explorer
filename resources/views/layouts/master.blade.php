@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
 
+    {{-- favicon --}}
+    <link rel="icon" type="image/png" href="{{ asset('images/iucn-redlist-explorer-logo.png') }}">
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
