@@ -1,5 +1,6 @@
 {{-- $baseUrl = 'systems' o 'countries' --}}
-<div class="flex justify-between items-center mt-8 bg-gray-50 p-4 rounded-lg shadow-sm">
+<div
+    class="flex flex-col min-[530px]:flex-row justify-center min-[530px]:justify-between items-center gap-4 mt-8 bg-gray-50 p-4 rounded-lg shadow-sm">
     @if ($pagination['current_page'] > 1)
         <a href="{{ route($baseUrl . '.show', ['code' => $code]) }}?page={{ $pagination['current_page'] - 1 }}&{{ http_build_query(request()->except('page')) }}"
             class="flex items-center gap-2 px-5 py-2 bg-red-700 text-white rounded-md hover:bg-red-800 transition-all duration-200 shadow-sm">
