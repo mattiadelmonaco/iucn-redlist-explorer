@@ -32,12 +32,12 @@
         </div>
 
         {{-- tabella valutazioni (list-view) --}}
-        <div id="list-view" class="px-4 py-8">
+        <div id="list-view" class="py-4">
             @include('partials.assessments-table')
         </div>
 
         {{-- card valutazioni (card-view) --}}
-        <div id="card-view" class="hidden px-4 py-8">
+        <div id="card-view" class="hidden py-4">
             @include('partials.assessments-card')
         </div>
     @endif
