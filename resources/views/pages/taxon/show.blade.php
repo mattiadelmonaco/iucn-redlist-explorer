@@ -11,7 +11,7 @@
             <p class="text-gray-600 mb-4">ID: {{ $taxon['sis_id'] }}</p>
 
             {{-- tasto preferiti --}}
-            <form action="/favorites" method="POST" class="mb-4">
+            <form action="{{ route('favorites.store') }}" method="POST" class="mb-4">
                 @csrf
                 <input type="hidden" name="sis_taxon_id" value="{{ $taxon['sis_id'] }}">
                 <input type="hidden" name="scientific_name" value="{{ $taxon['scientific_name'] }}">
@@ -62,10 +62,12 @@
                     <tbody>
                         @foreach ($assessments as $assessment)
                             <tr>
-                                <td class="px-4 py-2 border"><a href="/assessments/{{ $assessment['assessment_id'] }}"
+                                <td class="px-4 py-2 border">
+                                    <a href="{{ route('assessments.show', ['assessmentId' => $assessment['assessment_id']]) }}"
                                         class="text-blue-600 hover:underline">
                                         {{ $assessment['assessment_id'] }}
-                                    </a></td>
+                                    </a>
+                                </td>
                                 <td class="px-4 py-2 border">{{ $assessment['year_published'] }}</td>
                                 <td class="px-4 py-2 border">{{ $assessment['possibly_extinct'] ? 'Sì' : 'No' }}</td>
                                 <td class="px-4 py-2 border">
@@ -94,7 +96,8 @@
                     <div class="border rounded-lg">
                         <div class="flex justify-between items-center border-b p-2">
                             <div>
-                                ID Valutazione: <a href="/assessments/{{ $assessment['assessment_id'] }}"
+                                ID Valutazione: <a
+                                    href="{{ route('assessments.show', ['assessmentId' => $assessment['assessment_id']]) }}"
                                     class="text-blue-600 hover:underline">
                                     {{ $assessment['assessment_id'] }}
                                 </a>

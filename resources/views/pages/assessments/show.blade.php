@@ -94,7 +94,8 @@
                 <h2 class="text-2xl font-semibold mb-4">Sistemi</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     @foreach ($assessment['systems'] as $system)
-                        <a href="/systems/{{ $system['code'] }}" class="border p-4 rounded hover:bg-gray-100 block">
+                        <a href="{{ route('systems.show', ['code' => $system['code']]) }}"
+                            class="border p-4 rounded hover:bg-gray-100 block">
                             {{ $system['description']['en'] }}
                         </a>
                     @endforeach

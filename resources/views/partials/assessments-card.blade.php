@@ -4,7 +4,8 @@
             <div class="flex justify-between items-center border-b p-2">
                 <div class="">
                     @if (isset($assessment['sis_taxon_id']))
-                        <a href="/taxon/{{ $assessment['sis_taxon_id'] }}" class="text-blue-600 hover:underline">
+                        <a href="{{ route('taxon.show', ['sisId' => $assessment['sis_taxon_id']]) }}"
+                            class="text-blue-600 hover:underline">
                             ID specie: {{ $assessment['sis_taxon_id'] }}
                         </a>
                     @else
@@ -24,7 +25,8 @@
                     {{ $assessment['possibly_extinct_in_the_wild'] ? 'Sì' : 'No' }}
                 </div>
                 <div>
-                    ID Valutazione: <a href="/assessments/{{ $assessment['assessment_id'] }}"
+                    ID Valutazione: <a
+                        href="{{ route('assessments.show', ['assessmentId' => $assessment['assessment_id']]) }}"
                         class="text-blue-600 hover:underline">
                         {{ $assessment['assessment_id'] }}
                     </a>

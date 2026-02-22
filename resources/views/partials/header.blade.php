@@ -6,17 +6,13 @@
         <nav>
             <ul class="flex gap-4">
                 <li>
-                    <a href="/">Home</a>
+                    <a href="{{ route('home') }}">Home</a>
                 </li>
+
                 <li>
-                    <a href="/favorites/">Preferiti</a>
+                    <a href="{{ route('favorites.index') }}">Preferiti</a>
                 </li>
-                <li>
-                    <a href="#">pagina 3</a>
-                </li>
-                <li>
-                    <a href="#">pagina 4</a>
-                </li>
+
 
             </ul>
         </nav>

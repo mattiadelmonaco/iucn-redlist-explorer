@@ -14,7 +14,8 @@
                     <div class="border rounded p-4 hover:shadow-lg transition">
                         <div class="flex justify-between items-center">
                             <h3 class="text-xl font-semibold mb-2">
-                                <a href="/taxon/{{ $favorite->sis_taxon_id }}" class="text-blue-600 hover:underline">
+                                <a href="{{ route('taxon.show', ['sisId' => $favorite->sis_taxon_id]) }}"
+                                    class="text-blue-600 hover:underline">
                                     {{ $favorite->scientific_name }}
                                 </a>
                             </h3>

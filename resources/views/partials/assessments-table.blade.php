@@ -16,7 +16,8 @@
                 <tr>
                     <td class="px-4 py-2 border">
                         @if (isset($assessment['sis_taxon_id']))
-                            <a href="/taxon/{{ $assessment['sis_taxon_id'] }}" class="text-blue-600 hover:underline">
+                            <a href="{{ route('taxon.show', ['sisId' => $assessment['sis_taxon_id']]) }}"
+                                class="text-blue-600 hover:underline">
                                 {{ $assessment['sis_taxon_id'] }}
                             </a>
                         @else
@@ -25,11 +26,12 @@
                     </td>
                     <td class="px-4 py-2 border">{{ $assessment['year_published'] }}</td>
                     <td class="px-4 py-2 border">{{ $assessment['possibly_extinct'] ? 'Sì' : 'No' }}</td>
-                    <td class="px-4 py-2 border">{{ $assessment['possibly_extinct_in_the_wild'] ? 'Sì' : 'No' }}
-                    <td class="px-4 py-2 border"><a href="/assessments/{{ $assessment['assessment_id'] }}"
+                    <td class="px-4 py-2 border">{{ $assessment['possibly_extinct_in_the_wild'] ? 'Sì' : 'No' }}</td>
+                    <td class="px-4 py-2 border">
+                        <a href="{{ route('assessments.show', ['assessmentId' => $assessment['assessment_id']]) }}"
                             class="text-blue-600 hover:underline">
                             {{ $assessment['assessment_id'] }}
-                        </a></td>
+                        </a>
                     </td>
                     <td class="px-4 py-2 border">{{ $assessment['category_translated'] }}</td>
                     <td class="px-4 py-2 border">

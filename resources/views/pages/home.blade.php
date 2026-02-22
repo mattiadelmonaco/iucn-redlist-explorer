@@ -14,7 +14,8 @@
             <h2 class="text-2xl font-semibold mb-4">Sistemi</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                 @foreach ($systems as $system)
-                    <a href="/systems/{{ $system['code'] }}" class="border p-4 rounded block hover:bg-gray-100">
+                    <a href="{{ route('systems.show', ['code' => $system['code']]) }}"
+                        class="border p-4 rounded block hover:bg-gray-100">
                         <h3>{{ $system['description']['en'] }}</h3>
                     </a>
                 @endforeach
@@ -26,7 +27,7 @@
             <h2 class="text-2xl font-semibold mb-4">Nazioni</h2>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                 @foreach ($countries as $country)
-                    <a href="/countries/{{ $country['code'] }}"
+                    <a href="{{ route('countries.show', ['code' => $country['code']]) }}"
                         class="border p-3 rounded hover:bg-gray-100 flex items-center gap-3">
                         <img src="https://flagcdn.com/w40/{{ strtolower($country['code']) }}.png"
                             alt="{{ $country['description']['en'] }}" class="w-8 h-6 object-cover rounded">
