@@ -2,7 +2,7 @@
     <div class="flex justify-between items-center">
 
         {{-- logo --}}
-        <a href="{{ route('home') }}" class="bg-red-700 p-2 rounded-lg w-14 h-14">
+        <a href="{{ route('home') }}" class="bg-red-700 p-1 rounded-lg w-14 h-14">
             <img src="{{ asset('images/iucn-redlist-explorer-logo.png') }}" alt="logo IUCN RedList Explorer">
         </a>
 
