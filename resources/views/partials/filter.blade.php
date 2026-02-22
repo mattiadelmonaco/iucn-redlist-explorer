@@ -35,7 +35,7 @@
         {{-- tasti --}}
         <div class="flex gap-2">
             <button type="submit"
-                class="px-6 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md font-medium transition-colors shadow-sm cursor-pointer">
+                class="px-6 py-2 bg-red-700 hover:bg-red-800 text-white rounded-md font-medium transition-colors shadow-sm cursor-pointer">
                 Filtra
             </button>
             <a href="{{ url()->current() }}"
