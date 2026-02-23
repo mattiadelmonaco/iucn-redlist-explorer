@@ -108,7 +108,7 @@
                             <div>
                                 <a href="{{ route('assessments.show', ['assessmentId' => $assessment['assessment_id']]) }}"
                                     class="text-white hover:underline font-semibold">
-                                    ID: {{ $assessment['assessment_id'] }}
+                                    ID Valutazione: {{ $assessment['assessment_id'] }}
                                 </a>
                             </div>
                             <div class="text-right opacity-90">
