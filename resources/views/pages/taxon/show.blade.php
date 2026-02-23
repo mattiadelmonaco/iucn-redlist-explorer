@@ -31,19 +31,24 @@
     {{-- nomi comuni --}}
     <div class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm mb-6">
         <h2 class="text-xl font-bold mb-4 border-b-2 border-red-600 pb-2 inline-block">Nomi Comuni</h2>
-        <ul class="space-y-2">
-            @foreach ($taxon['common_names'] as $commonName)
-                <li class="flex items-center gap-3">
-                    <span class="text-lg {{ $commonName['main'] ? 'font-bold text-red-600' : 'text-gray-700' }}">
-                        {{ $commonName['name'] }}
-                    </span>
-                    <span class="text-sm text-gray-500">({{ $commonName['language'] }})</span>
-                    @if ($commonName['main'])
-                        <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full font-semibold">Principale</span>
-                    @endif
-                </li>
-            @endforeach
-        </ul>
+        @if (empty($taxon['common_names']))
+            <p class="text-gray-500 italic">Nessun nome comune disponibile</p>
+        @else
+            <ul class="space-y-2">
+                @foreach ($taxon['common_names'] as $commonName)
+                    <li class="flex items-center gap-3">
+                        <span class="text-lg {{ $commonName['main'] ? 'font-bold text-red-600' : 'text-gray-700' }}">
+                            {{ $commonName['name'] }}
+                        </span>
+                        <span class="text-sm text-gray-500">({{ $commonName['language'] }})</span>
+                        @if ($commonName['main'])
+                            <span
+                                class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded-full font-semibold">Principale</span>
+                        @endif
+                    </li>
+                @endforeach
+            </ul>
+        @endif
     </div>
 
     {{-- valutazioni --}}
