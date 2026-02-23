@@ -16,9 +16,22 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             @foreach ($systems as $system)
                 <a href="{{ route('systems.show', ['code' => $system['code']]) }}"
-                    class="border-2 border-gray-200 px-6 py-4 rounded-lg block hover:border-red-600 hover:text-red-600 hover:shadow-lg transition-all duration-200">
-                    <h3 class="text-lg">
-                        {{ $system['description']['en'] }}</h3>
+                    class="flex items-center gap-2 border-2 border-gray-200 px-6 py-4 rounded-lg hover:border-red-600 hover:text-red-600 hover:shadow-lg transition-all duration-200 group">
+                    @if ($system['description']['en'] === 'Terrestrial')
+                        <span>🌍</span>
+                    @elseif ($system['description']['en'] === 'Freshwater (=Inland waters)')
+                        <span>💧</span>
+                    @elseif ($system['description']['en'] === 'Marine')
+                        <span>🌊</span>
+                    @endif
+                    <h3
+                        class="text-lg group-hover:text-red-600
+                    {{ $system['description']['en'] === 'Terrestrial' ? 'text-green-700' : '' }} 
+                    {{ $system['description']['en'] === 'Freshwater (=Inland waters)' ? 'text-blue-600' : '' }} 
+                     {{ $system['description']['en'] === 'Marine' ? 'text-cyan-600' : '' }}
+                    ">
+                        {{ $system['description']['en'] }}
+                    </h3>
                 </a>
             @endforeach
         </div>
