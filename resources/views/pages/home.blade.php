@@ -43,7 +43,7 @@
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3">
             @foreach ($countries as $country)
                 <a href="{{ route('countries.show', ['code' => $country['code']]) }}"
-                    class="border border-gray-200 p-3 rounded hover:shadow-md hover:border-red-600 transition-all duration-200 flex items-center gap-2"
+                    class="border border-gray-200 p-3 rounded hover:shadow-md hover:border-red-600 hover:text-red-600 transition-all duration-200 flex items-center gap-2"
                     title="{{ $country['description']['en'] }}">
                     <img src="https://flagcdn.com/w40/{{ strtolower($country['code']) }}.png"
                         alt="{{ $country['description']['en'] }}" class="w-8 h-6 object-cover rounded">
